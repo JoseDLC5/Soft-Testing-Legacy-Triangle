@@ -10,10 +10,10 @@ The primary goal of this file is to demonstrate a simple python program to class
 """
 
 
-def classifyTriangle(a, b, c):
+def classify_triangle(fst, snd, thrd):
     """
-    Your correct code goes here...  Fix the faulty logic below until the code passes all of 
-    you test cases. 
+    Your correct code goes here...  Fix the faulty logic below until the code passes all of
+    you test cases.
 
     This function returns a string with the type of triangle from three integer values
     corresponding to the lengths of the three sides of the Triangle.
@@ -30,31 +30,31 @@ def classifyTriangle(a, b, c):
 
     # verify that all 3 inputs are integers
     # Python's "isinstance(object,type) returns True if the object is of the specified type
-    if not(isinstance(a, int) and isinstance(b, int) and isinstance(c, int)):
-        return 'InvalidInput'
 
-    # require that the input values be >= 0 and <= 200
-    if a > 200 or b > 200 or c > 200:
-        return 'InvalidInput'
+    bool1 = not(isinstance(fst, int) and isinstance(
+        snd, int) and isinstance(thrd, int))
 
-    if a <= 0 or b <= 0 or c <= 0:
+    bool2 = fst <= 0 or snd <= 0 or thrd <= 0
+
+    bool3 = fst > 200 or snd > 200 or thrd > 200
+
+    if bool1 or bool2 or bool3:
         return 'InvalidInput'
 
     # This information was not in the requirements spec but
     # is important for correctness
     # the sum of any two sides must be strictly less than the third side
     # of the specified shape is not a triangle
-    if (a >= (b + c)) or (b >= (a + c)) or (c >= (a + b)):
+    if (fst >= (snd + thrd)) or (snd >= (fst + thrd)) or (thrd >= (fst + snd)):
         return 'NotATriangle'
 
-    list = [a,b,c]
-    list.sort()
+    sides = [fst, snd, thrd]
+    sides.sort()
     # now we know that we have a valid triangle
-    if a == b and b == c:
+    if fst == snd and snd == thrd:
         return 'Equilateral'
-    elif ((list[0] ** 2) + (list[1] ** 2)) == (list[2] ** 2):
+    if ((sides[0] ** 2) + (sides[1] ** 2)) == (sides[2] ** 2):
         return 'Right'
-    elif (a != b) and (b != c) and (a != c):
+    if (fst != snd) and (snd != thrd) and (fst != thrd):
         return 'Scalene'
-    else:
-        return 'Isosceles'
+    return 'Isosceles'
